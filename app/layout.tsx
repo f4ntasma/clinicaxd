@@ -7,18 +7,10 @@ import "./globals.css"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Clínica Privada | Tu Salud, Nuestra Prioridad",
+  title: "Clínicaxd",
   description:
-    "Clínica privada moderna con especialistas certificados, citas en línea, telemedicina y resultados de laboratorio 24/7.",
-  generator: "v0.app",
-  icons: {
-    icon: [
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
-    ],
-  },
+    "Clínicaxdxd es una clínicaprivada moderna con especialistas certificados, citas en línea, telemedicina y resultados de laboratorio 24/7.",
+  generator: "#",
 }
 
 export default function RootLayout({

@@ -20,7 +20,7 @@ export function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-        <div className="text-2xl font-bold text-primary">Clínica</div>
+        <div className="text-2xl font-bold text-primary">Clínicaxd</div>
         <ul className="hidden md:flex gap-8 items-center text-sm font-medium">
           <li>
             <Link href="/" className="hover:text-primary transition">

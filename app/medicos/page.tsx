@@ -1,11 +1,22 @@
 "use client"
 
+import Image from "next/image"
 import { useState } from "react"
-import { Navbar } from "@/components/navbar"
+import PillNav from "@/components/PillNav"
 import { Footer } from "@/components/footer"
+
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { doctors, specialties } from "@/lib/mock-data"
+
+const navItems = [
+  { label: "Inicio", href: "/" },
+  { label: "Especialidades", href: "/#especialidades" },
+  { label: "Médicos", href: "/medicos" },
+  { label: "Citas", href: "/citas" },
+  { label: "Resultados", href: "/#resultados" },
+  { label: "Contacto", href: "/contacto" },
+]
 
 export default function DoctorsPage() {
   const [selectedSpecialty, setSelectedSpecialty] = useState<string>("")
@@ -19,8 +30,16 @@ export default function DoctorsPage() {
 
   return (
     <>
-      <Navbar />
-      <div className="min-h-screen bg-background">
+      <PillNav
+        logo="/logope.png"
+        logoAlt="Clínicaxd Logo"
+        items={navItems}
+        baseColor="#0d9488"
+        pillColor="#ffffff"
+        hoveredPillTextColor="#ffffff"
+        pillTextColor="#0d9488"
+      />
+      <div className="min-h-screen bg-background pt-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <h1 className="text-4xl font-bold mb-8">Nuestros Médicos</h1>
 
@@ -59,7 +78,13 @@ export default function DoctorsPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filtered.map((doctor) => (
               <Card key={doctor.id} className="p-6 border-border hover:shadow-lg transition">
-                <div className="text-5xl mb-4">{doctor.avatar}</div>
+                <Image
+                  src={doctor.avatarUrl}
+                  alt={`Avatar de ${doctor.name}`}
+                  width={80}
+                  height={80}
+                  className="rounded-full object-cover mx-auto mb-4"
+                />
                 <h3 className="text-xl font-semibold mb-2">{doctor.name}</h3>
                 <p className="text-primary font-semibold mb-3">{doctor.specialty}</p>
                 <p className="text-sm text-muted-foreground mb-4">{doctor.experience} años de experiencia</p>

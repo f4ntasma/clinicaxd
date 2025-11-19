@@ -1,18 +1,37 @@
-import { Navbar } from "@/components/navbar"
+import Link from "next/link"
+import Image from "next/image"
+import PillNav from "@/components/PillNav"
 import { Hero } from "@/components/hero"
 import { SpecialtyGrid } from "@/components/specialty-grid"
 import { QuickBooking } from "@/components/quick-booking"
 import { Testimonials } from "@/components/testimonials"
 import { FaqSection } from "@/components/faq-section"
 import { Footer } from "@/components/footer"
-import { Card } from "@/components/ui/card"
+import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { blogPosts, insurances } from "@/lib/mock-data"
+
+const navItems = [
+  { label: "Inicio", href: "/" },
+  { label: "Especialidades", href: "/#especialidades" },
+  { label: "Médicos", href: "/medicos" },
+  { label: "Citas", href: "/citas" },
+  { label: "Resultados", href: "/#resultados" },
+  { label: "Contacto", href: "/contacto" },
+]
 
 export default function Home() {
   return (
     <>
-      <Navbar />
+      <PillNav
+        logo="/logope.png"
+        logoAlt="Clínicaxd Logo"
+        items={navItems}
+        baseColor="#ede6e7ff"
+        pillColor="#ffffffff"
+        hoveredPillTextColor="#595c5cff"
+        pillTextColor="#0d9488"
+      />
       <Hero />
       <SpecialtyGrid />
       <QuickBooking />
@@ -27,13 +46,15 @@ export default function Home() {
                 Accede a tus resultados de laboratorio de forma segura en línea. Disponibles 24 horas después de
                 realizado el análisis.
               </p>
-              <Button className="bg-primary hover:bg-primary/90 mb-4">Ir a Resultados</Button>
+              <Button className="bg-primary hover:bg-primary/90 mb-4" asChild>
+                <Link href="/citas">Ir a Resultados</Link>
+              </Button>
               <p className="text-sm text-muted-foreground">
                 Privacidad y seguridad garantizadas • Encriptación SSL • HIPAA compliant
               </p>
             </div>
-            <Card className="bg-muted p-6 border-border flex items-center justify-center min-h-64">
-              <div className="text-center text-muted-foreground">Tablero de Resultados</div>
+            <Card className="bg-muted p-2 border-border flex items-center justify-center min-h-64 overflow-hidden">
+              <img className="border-boder flex rounded-2xl" src="https://previews.123rf.com/images/akkamulator/akkamulator1710/akkamulator171000363/87897731-doctor-and-patient-close-up-of-hands-physician-talking-about-medical-examination-results.jpg" alt="Lab Results Dashboard" />
             </Card>
           </div>
         </div>
@@ -115,18 +136,31 @@ export default function Home() {
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">Blog de Salud</h2>
           <div className="grid md:grid-cols-3 gap-6 mb-8">
             {blogPosts.map((post) => (
-              <Card key={post.id} className="border-border overflow-hidden hover:shadow-lg transition cursor-pointer">
-                <div className="bg-primary/20 h-40" />
-                <div className="p-6">
-                  <div className="text-xs font-semibold text-primary mb-2">{post.category}</div>
-                  <h3 className="font-semibold mb-2">{post.title}</h3>
-                  <p className="text-sm text-muted-foreground">{post.excerpt}</p>
-                </div>
+              <Card key={post.id} className="border-border overflow-hidden hover:shadow-lg transition flex flex-col">
+                <Link href="#" className="block">
+                  <div className="relative h-48 w-full">
+                    <Image
+                      src={post.imageUrl}
+                      alt={`Imagen para ${post.title}`}
+                      fill
+                      className="object-cover rounded-t-2xl"
+                    />
+                  </div>
+                  <CardHeader>
+                    <p className="text-xs font-semibold text-primary mb-2">{post.category}</p>
+                    <h3 className="font-semibold">{post.title}</h3>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground">{post.excerpt}</p>
+                  </CardContent>
+                </Link>
               </Card>
             ))}
           </div>
           <div className="text-center">
-            <Button variant="outline">Ver todos los artículos</Button>
+            <Button variant="outline" asChild>
+              <Link href="/citas">Ver todos los artículos</Link>
+            </Button>
           </div>
         </div>
       </section>
