@@ -1,5 +1,5 @@
 {
-  "name": "my-v0-project",
+  "name": "clinicaxd",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -73,3 +73,4 @@
     "typescript": "^5"
   }
 }
+
